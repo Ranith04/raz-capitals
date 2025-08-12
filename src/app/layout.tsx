@@ -1,5 +1,4 @@
-import Footer from '@/components/Footer'
-import Navbar from '@/components/Navbar'
+import ConditionalFooter from '@/components/ConditionalFooter'
 import '@/styles/globals.css'
 import '@/styles/variables.css'
 import type { Metadata } from 'next'
@@ -36,11 +35,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="min-h-screen flex flex-col">
-          <Navbar />
           <main className="flex-grow">
             {children}
           </main>
-          <Footer />
+          <ConditionalFooter />
         </div>
       </body>
     </html>

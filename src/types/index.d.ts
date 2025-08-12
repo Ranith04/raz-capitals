@@ -3,6 +3,10 @@ export interface PricingPlan {
   title: string;
   description: string;
   price: string;
+  period?: string;
+  leverage?: string;
+  commission?: string;
+  minLot?: string;
   features: string[];
   buttonText: string;
   popular?: boolean;
@@ -45,4 +49,25 @@ export interface MobileMockup {
   description: string;
   imageSrc: string;
   alt: string;
+}
+
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  role: 'admin' | 'user';
+  createdAt: string;
+  lastLogin?: string;
+}
+
+export interface AuthResponse {
+  success: boolean;
+  user?: User;
+  message?: string;
+  token?: string;
+}
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
 } 

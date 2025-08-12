@@ -2,53 +2,71 @@ import { PricingPlan } from '@/types';
 
 export const pricingPlans: PricingPlan[] = [
   {
-    id: 'starter',
-    title: 'Starter',
-    description: 'Perfect for beginners getting started with trading',
-    price: '$0',
-    period: '/forever',
+    id: 'pearl',
+    title: 'Pearl',
+    description: 'Minimum Deposit',
+    price: '$500',
+    period: '',
+    leverage: '1:50',
+    commission: '$2 per lot',
+    minLot: '0.01',
     features: [
+      'Coverage',
+      'Commission',
+      'Min lot',
+      'Auto trading lots',
       'Basic trading tools',
-      'Real-time market data',
-      'Email support',
-      'Mobile app access',
-      'Basic analytics'
+      'Weekly trading logs',
+      'Educational resources',
+      'Demo Risk account'
     ],
-    buttonText: 'Get Started'
+    buttonText: 'Open Free Account'
   },
   {
-    id: 'professional',
-    title: 'Professional',
-    description: 'Advanced features for serious traders',
-    price: '$29',
-    period: '/per month',
+    id: 'ruby',
+    title: 'Ruby',
+    description: 'Minimum Deposit',
+    price: '$1,000',
+    period: '',
+    leverage: '1:50',
+    commission: '$1 per lot',
+    minLot: '0.01',
     features: [
-      'Everything in Starter',
-      'Advanced charting tools',
-      'Priority support',
-      'API access',
-      'Custom indicators',
-      'Portfolio analytics',
-      'Risk management tools'
+      'Coverage',
+      'Commission',
+      'Min lot',
+      'Auto trading lots',
+      'Priority customer support',
+      'Weekly market forecasts',
+      'Advanced reporting',
+      'Educational resources',
+      'Algorithmic trading tools',
+      'Advanced analytics'
     ],
-    buttonText: 'Start Free Trial',
+    buttonText: 'Open Free Account',
     popular: true
   },
   {
-    id: 'enterprise',
-    title: 'Enterprise',
-    description: 'For teams and institutional traders',
-    price: '$99',
-    period: '/per month',
+    id: 'diamond',
+    title: 'Diamond',
+    description: 'Minimum Deposit',
+    price: '$5,000',
+    period: '',
+    leverage: '1:100',
+    commission: '$0 per lot',
+    minLot: '0.01',
     features: [
-      'Everything in Professional',
-      'Team collaboration tools',
-      'Dedicated account manager',
-      'Custom integrations',
-      'Advanced security',
-      'Unlimited API calls',
-      'White-label options'
+      'Coverage',
+      'Commission',
+      'Min lot',
+      'Auto trading lots',
+      'Professional trading desk',
+      'White-label solutions',
+      'Institutional grade tools',
+      'Advanced algorithms',
+      'Custom reporting',
+      'API Access'
     ],
-    buttonText: 'Contact Sales'
+    buttonText: 'Open Free Account'
   }
 ]; 

@@ -40,14 +40,20 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #1E2E23;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #22c55e;
+  background: #A0C8A9;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #16a34a;
+  background: #8FB89A;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #A0C8A9 #1E2E23;
 } 
