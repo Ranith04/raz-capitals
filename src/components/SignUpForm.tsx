@@ -1,11 +1,14 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function SignUpForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState({ email: '', password: '' });
+  const router = useRouter();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -13,20 +16,40 @@ export default function SignUpForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Reset errors
+    setErrors({ email: '', password: '' });
+    
+    // Validate fields
+    const newErrors = { email: '', password: '' };
+    
+    if (!email.trim()) {
+      newErrors.email = 'Please fill out this field.';
+    }
+    
+    if (!password.trim()) {
+      newErrors.password = 'Please fill out this field.';
+    }
+    
+    if (newErrors.email || newErrors.password) {
+      setErrors(newErrors);
+      return;
+    }
+    
     // Navigate to step 2
-    window.location.href = '/signup/step-2';
+    router.push('/signup/step-2');
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-8">
-      {/* Header with icon */}
+    <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md mx-auto">
+      {/* Header with right-arrow icon */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4" style={{ backgroundColor: '#A0C8A9' }}>
           <svg className="w-8 h-8" style={{ color: '#1E2E23' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
         </div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Register with Email</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-2" style={{ color: '#1E2E23' }}>Register With Email</h1>
         <p className="text-gray-600">Discover, trade, buy, and sell — all in one place!</p>
       </div>
 
@@ -34,14 +57,14 @@ export default function SignUpForm() {
         {/* Email Field */}
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-            Email Address
+            Email Address <span className="text-red-500">*</span>
           </label>
           <input
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 transition-colors duration-200 text-gray-900 bg-white placeholder-gray-500 !text-gray-900"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 transition-colors duration-200 text-gray-900 bg-white placeholder-gray-500"
             style={{ 
               color: '#111827', 
               backgroundColor: '#ffffff'
@@ -57,12 +80,20 @@ export default function SignUpForm() {
             placeholder="Enter your email address"
             required
           />
+          {errors.email && (
+            <div className="mt-2 flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium" style={{ backgroundColor: '#FEF3C7', color: '#92400E' }}>
+              <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+              {errors.email}
+            </div>
+          )}
         </div>
 
         {/* Password Field */}
         <div>
           <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-            Password
+            Password <span className="text-red-500">*</span>
           </label>
           <div className="relative">
             <input
@@ -70,7 +101,7 @@ export default function SignUpForm() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 transition-colors duration-200 text-gray-900 bg-white placeholder-gray-500 !text-gray-900"
+              className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 transition-colors duration-200 text-gray-900 bg-white placeholder-gray-500"
               style={{ 
                 color: '#111827', 
                 backgroundColor: '#ffffff'
@@ -103,15 +134,22 @@ export default function SignUpForm() {
               )}
             </button>
           </div>
+          {errors.password && (
+            <div className="mt-2 flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium" style={{ backgroundColor: '#FEF3C7', color: '#92400E' }}>
+              <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+              {errors.password}
+            </div>
+          )}
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-200"
+          className="w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-200 text-white"
           style={{ 
-            backgroundColor: '#A0C8A9', 
-            color: '#1E2E23'
+            backgroundColor: '#A0C8A9'
           }}
           onMouseEnter={(e) => {
             const target = e.target as HTMLButtonElement;
@@ -125,6 +163,16 @@ export default function SignUpForm() {
           Next
         </button>
       </form>
+
+      {/* Login Link */}
+      <div className="mt-6 text-center">
+        <p className="text-sm text-gray-600">
+          Already have an account?{' '}
+          <a href="/signin" className="text-gray-900 font-medium hover:text-gray-700 transition-colors duration-200">
+            Login
+          </a>
+        </p>
+      </div>
     </div>
   );
 }
